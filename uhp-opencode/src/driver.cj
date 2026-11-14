@@ -469,14 +469,8 @@ public class OpencodeDriver <: HarnessDriver {
         let out = ByteBuffer()
         let w = JsonWriter(out)
         w.startObject()
-        // 请求体形状：`{"prompt":{...}, "delivery":"queue"}`。
-        //
-        // 顶层是**信封**（prompt / delivery / resume / id），真正的输入在 `prompt` 里。
-        // 实测 flat 形状（text/delivery 平铺）会被判 400 `Missing key at ["prompt"]`——
-        // 服务端 schema 是 additionalProperties:false，形状差一层就直接拒。
-        w.writeName("prompt")
-        w.startObject()
         w.writeName("text").writeValue(ctx.input)
+        w.writeName("delivery").writeValue("queue")
         if (ctx.files.size > 0) {
             w.writeName("files")
             w.startArray()
@@ -488,8 +482,6 @@ public class OpencodeDriver <: HarnessDriver {
             }
             w.endArray()
         }
-        w.endObject()
-        w.writeName("delivery").writeValue("queue")
         w.endObject()
         w.flush()
         return String.fromUtf8(out.bytes())
