@@ -16,7 +16,7 @@
   link-option = "-lstdx.crypto.digest"
   name = "uhp"
   output-type = "static"
-  version = "0.1.1"
+  version = "0.1.3"
   license = ["MulanPSL-2.0"]
   authors = ["ystyle"]
   repository = "https://atomgit.com/ystyle/uhp"
@@ -34,7 +34,8 @@
   path-option = ["${CANGJIE_STDX_PATH}"]
 [target.aarch64-unknown-linux-gnu.bin-dependencies]
   path-option = ["${CANGJIE_STDX_PATH}"]
-[target.x86_64-apple-darwin.bin-dependencies]
-  path-option = ["${CANGJIE_STDX_PATH}"]
+# macOS 只声明 aarch64（新版仓颉 SDK 不再提供 x86_64 macOS）
 [target.aarch64-apple-darwin.bin-dependencies]
+  path-option = ["${CANGJIE_STDX_PATH}"]
+[target.x86_64-w64-mingw32.bin-dependencies]
   path-option = ["${CANGJIE_STDX_PATH}"]

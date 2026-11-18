@@ -3,7 +3,7 @@
 # 三个成员统一发布（lockstep 版本）；适配器是开箱即用的参考实现。
 
 [workspace.package]
-  version = "0.1.0"
+  version = "0.1.3"
 
 [workspace.publish]
   members = ["uhp", "uhp-opencode", "uhp-acp"]
